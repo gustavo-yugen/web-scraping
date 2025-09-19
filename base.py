@@ -19,3 +19,12 @@ def get_html (url: str):
 def get_aba (html: BeautifulSoup):
     html_das_abas = html.find('div', class_="sections nav-sections")
     return html_das_abas
+
+# pegar o topico "caos".
+#================================================================
+def get_html_caos (html_abas: BeautifulSoup):
+    tag_caos = html_abas.find('a', href="https://thesaint.com.br/caos.html")
+    href = tag_caos.get('href')
+    bits_caos = requests.get(href)
+    html_caos = BeautifulSoup(bits_caos.text, "html.parser")
+    return html_caos
